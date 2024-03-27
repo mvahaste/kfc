@@ -9,7 +9,7 @@ I like KFC.
 
 ## Example
 
-<img src="preview/preview.jpg" width="500" alt="Example discord screenshot">
+<img src="preview.jpg" width="500" alt="Example discord screenshot">
 
 ## Dependencies
 
