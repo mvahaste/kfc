@@ -9,12 +9,17 @@ def main(*args):
 
     print(str(dev))
 
+    n = 0
 
-    text, image = get_special()
+    while n < 3:
+        try:
+            text, image = get_special()
 
-    code, desc = get_code_desc(text)
+            code, desc = get_code_desc(text)
 
-    send_special(code, desc, image, True)
+            send_special(code, desc, image, True)
+        except:
+            continue
 
 if __name__ == "__main__":
     main(argv)
