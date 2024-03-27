@@ -1,6 +1,7 @@
 name: Send special to Discord
 
 on:
+   push:
    # schedule:
    #   - cron: '00 05 * * TUE'
    workflow_dispatch: null
