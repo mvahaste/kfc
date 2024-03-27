@@ -1,0 +1,33 @@
+name: Send special to Discord
+
+on:
+   # schedule:
+   #   - cron: '00 05 * * TUE'
+   workflow_dispatch: null
+
+jobs:
+   kfc-codes-bot:
+      name: KFC codes bot
+      runs-on: ubuntu-latest
+      steps:
+         - name: Check-out kfc repository
+           uses: actions/checkout@v3
+         - name: Python Dependency Installation
+           uses: py-actions/py-dependency-install@v4.0.0
+           with:
+              path: "requirements.txt"
+         - name: Create config.js
+           id: create-config
+           uses: jsdaniell/create-json@v1.2.3
+           with:
+              name: "config.json"
+              json: ${{ secrets.CONFIG }}
+         - name: Create mbasicHeaders.js
+           id: create-headers
+           uses: jsdaniell/create-json@v1.2.3
+           with:
+              name: "mbasicHeaders.json"
+              json: ${{ secrets.MBASICHEADERS }}
+         - name: Run main.py
+           run: "python main.py -d"
+           shell: sh
