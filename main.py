@@ -13,6 +13,7 @@ def main(*args):
     n = 0
 
     while n < 3:
+        print(f"Attempt nr {n}..")
         try:
             text, image = get_special()
 
