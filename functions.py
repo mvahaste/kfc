@@ -39,7 +39,7 @@ def get_code_desc(text):
 
     return (code, desc)
 
-def random_message(message_type: str) -> str:
+def random_message(message_type):
     """Return a random message for the discord embed"""
     good_messages: list[str] = [
         "süüa saab",
@@ -65,7 +65,7 @@ def random_message(message_type: str) -> str:
         return choice(bad_messages)
 
 
-def random_emoji(message_type: str) -> str:
+def random_emoji(message_type):
     """Return a random emoji"""
     good_emojis: list[str] = [
         ":poultry_leg:",
