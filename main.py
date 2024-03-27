@@ -20,6 +20,7 @@ def main(*args):
 
             send_special(code, desc, image, True)
         except:
+            n += 1
             sleep(3)
 
 
