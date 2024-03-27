@@ -1,5 +1,4 @@
 from facebook_scraper import get_posts, _scraper
-import json
 from re import search
 from discord import Client, Intents, Embed
 from random import choice

@@ -1,1 +1,2 @@
 facebook-scraper @ git+https://github.com/moda20/facebook-scraper.git@master
+discord
