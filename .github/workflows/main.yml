@@ -7,8 +7,8 @@ on:
    workflow_dispatch: null
 
 jobs:
-   kfc-codes-bot:
-      name: KFC codes bot
+   send-special:
+      name: Send special
       runs-on: ubuntu-latest
       steps:
          - name: Check-out kfc repository
@@ -29,6 +29,10 @@ jobs:
            with:
               name: "mbasicHeaders.json"
               json: ${{ secrets.MBASICHEADERS }}
+         - name: Install Firefox
+           uses: shreyash-Pandey-Katni/Chrome-Firefox-git-install-action@v2
+           with:
+              firefox: true
          - name: Run main.py
            run: "python main.py -d"
            shell: sh
