@@ -16,6 +16,9 @@ def get_special():
         full_text = post["full_text"]
         image_url = post["image"]
 
+        print("TEXT: " + full_text)
+        print("IMAGE: " + image_url)
+
         return (full_text, image_url)
 
 
