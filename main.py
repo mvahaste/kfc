@@ -19,7 +19,8 @@ def main(*args):
             code, desc = get_code_desc(text)
 
             send_special(code, desc, image, True)
-        except:
+        except Exception as e:
+            print(str(e))
             n += 1
             sleep(3)
 
