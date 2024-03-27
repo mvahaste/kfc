@@ -1,5 +1,6 @@
 from sys import argv
 from functions import get_special, get_code_desc, send_special
+from time import sleep
 
 def main(*args):
     dev = False
@@ -7,7 +8,7 @@ def main(*args):
     if (len(args[0]) > 1 and args[0][1] == "-d"):
         dev = True
 
-    print(str(dev))
+    print("DEV: " + str(dev))
 
     n = 0
 
@@ -19,7 +20,8 @@ def main(*args):
 
             send_special(code, desc, image, True)
         except:
-            continue
+            sleep(3)
+
 
 if __name__ == "__main__":
     main(argv)
