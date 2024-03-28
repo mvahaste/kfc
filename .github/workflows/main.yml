@@ -1,37 +1,41 @@
 name: Send special to Discord
 
 on:
-   # schedule:
-   #   - cron: '00 05 * * TUE'
-   workflow_dispatch: null
+  workflow_dispatch: null
 
 jobs:
-   send-special:
-      name: Send special
-      runs-on: ubuntu-latest
-      steps:
-         - name: Check-out kfc repository
-           uses: actions/checkout@v3
-         - name: Python Dependency Installation
-           uses: py-actions/py-dependency-install@v4.0.0
-           with:
-              path: "requirements.txt"
-         - name: Create config.js
-           id: create-config
-           uses: jsdaniell/create-json@v1.2.3
-           with:
-              name: "config.json"
-              json: ${{ secrets.CONFIG }}
-         - name: Create mbasicHeaders.js
-           id: create-headers
-           uses: jsdaniell/create-json@v1.2.3
-           with:
-              name: "mbasicHeaders.json"
-              json: ${{ secrets.MBASICHEADERS }}
-         - name: Install Firefox
-           uses: shreyash-Pandey-Katni/Chrome-Firefox-git-install-action@v2
-           with:
-              firefox: true
-         - name: Run main.py
-           run: "python main.py -d"
-           shell: sh
+  send-special:
+    name: Send special
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out kfc repository
+        uses: actions/checkout@v3
+      - name: Python Dependency Installation
+        uses: py-actions/py-dependency-install@v4.0.0
+        with:
+          path: requirements.txt
+      - name: Create config.js
+        id: create-config
+        uses: jsdaniell/create-json@v1.2.3
+        with:
+          name: config.json
+          json: '${{ secrets.CONFIG }}'
+      - name: Create mbasicHeaders.js
+        id: create-headers
+        uses: jsdaniell/create-json@v1.2.3
+        with:
+          name: mbasicHeaders.json
+          json: '${{ secrets.MBASICHEADERS }}'
+      - name: Install Firefox
+        uses: shreyash-Pandey-Katni/Chrome-Firefox-git-install-action@v2
+        with:
+          firefox: true
+      - name: Run main.py
+        run: |
+          if [[ ${{ github.event_name == 'workflow_dispatch' }} == true ]]; then
+            echo "! RUNNING IN DEVELOPER MODE !"
+            python main.py -d
+          else
+            python main.py
+          fi
+
