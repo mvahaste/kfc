@@ -10,16 +10,13 @@ def get_special():
         _scraper.mbasic_headers = json.load(file)
 
     for post in get_posts("KFCEst", base_url="https://mbasic.facebook.com", start_url=f"https://mbasic.facebook.com/KFCEst?v=timeline", pages=3):
-        if ("sooduskood" not in post["full_text"].lower().strip()):
-            continue
+        if ("sooduskood" in post["full_text"].lower().strip()):
+            full_text = post["full_text"]
+            image_url = post["image"]
 
-        full_text = post["full_text"]
-        image_url = post["image"]
+            return [full_text, image_url]
 
-        print("TEXT: " + full_text)
-        print("IMAGE: " + image_url)
-
-        return (full_text, image_url)
+    raise Exception("No special found!")
 
 
 def get_code_desc(text):
@@ -135,4 +132,4 @@ def send_special(code, desc, image, dev):
     client.run(token)
 
     # Call the previous function
-    on_ready()
+    _ = on_ready()

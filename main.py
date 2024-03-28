@@ -19,6 +19,8 @@ def main(*args):
             code, desc = get_code_desc(text)
 
             send_special(code, desc, image, dev)
+
+            break
         except Exception as e:
             print(str(e))
             n += 1
@@ -27,4 +29,5 @@ def main(*args):
 
 
 if __name__ == "__main__":
-    main(argv)
+   main(argv)
+
