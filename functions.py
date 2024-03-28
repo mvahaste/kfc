@@ -9,7 +9,7 @@ def get_special():
     with open("./mbasicHeaders.json", "r") as file:
         _scraper.mbasic_headers = json.load(file)
 
-    for post in get_posts("KFCEst", base_url="https://mbasic.facebook.com", start_url=f"https://mbasic.facebook.com/KFCEst?v=timeline", pages=1):
+    for post in get_posts("KFCEst", base_url="https://mbasic.facebook.com", start_url=f"https://mbasic.facebook.com/KFCEst?v=timeline", pages=3):
         if ("sooduskood" not in post["full_text"].lower().strip()):
             continue
 

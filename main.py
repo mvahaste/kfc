@@ -8,8 +8,6 @@ def main(*args):
     if (len(args[0]) > 1 and args[0][1] == "-d"):
         dev = True
 
-    print("DEV: " + str(dev))
-
     n = 0
 
     while n < 3:
