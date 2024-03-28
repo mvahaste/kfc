@@ -1,2 +1,2 @@
-facebook-scraper @ git+https://github.com/moda20/facebook-scraper.git@master
-discord
+discord.py==2.3.2
+facebook_scraper==0.2.59
