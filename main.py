@@ -13,17 +13,19 @@ def main(*args):
     n = 0
 
     while n < 3:
-        print(f"Attempt nr {n}..")
+        print(f"Attempt nr {n + 1}..")
+
         try:
             text, image = get_special()
 
             code, desc = get_code_desc(text)
 
-            send_special(code, desc, image, True)
+            send_special(code, desc, image, dev)
         except Exception as e:
             print(str(e))
             n += 1
-            sleep(3)
+        
+        sleep(3)
 
 
 if __name__ == "__main__":
