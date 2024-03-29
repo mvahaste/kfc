@@ -1,4 +1,4 @@
-from facebook_scraper import get_posts, _scraper # type: ignore
+from facebook_scraper import get_posts, _scraper  # type: ignore
 from re import search
 from discord import Client, Intents, Embed
 from random import choice
@@ -9,8 +9,13 @@ def get_special():
     with open("./mbasicHeaders.json", "r") as file:
         _scraper.mbasic_headers = json.load(file)
 
-    for post in get_posts("KFCEst", base_url="https://mbasic.facebook.com", start_url=f"https://mbasic.facebook.com/KFCEst?v=timeline", pages=3):
-        if ("sooduskood" in post["full_text"].lower().strip()):
+    for post in get_posts(
+        "KFCEst",
+        base_url="https://mbasic.facebook.com",
+        start_url=f"https://mbasic.facebook.com/KFCEst?v=timeline",
+        pages=3,
+    ):
+        if "sooduskood" in post["full_text"].lower().strip():
             full_text = post["full_text"]
             image_url = post["image"]
 
@@ -27,14 +32,15 @@ def get_code_desc(text):
 
     for line in lines:
         # Get code
-        if (search("(sooduskood) \\d{5}", line.lower())):
+        if search("(sooduskood) \\d{5}", line.lower()):
             code = line.strip()
 
         # Get description
-        if (search("€|%|(\\d=\\d)", line)):
+        if search("€|%|(\\d=\\d)", line):
             desc = line.strip()
 
     return (code, desc)
+
 
 def random_message(message_type):
     """Return a random message for the discord embed"""
@@ -106,7 +112,9 @@ def send_special(code, desc, image, dev):
 
         # Print the guilds (servers) the bot is connected to
         for guild in client.guilds:
-            print(f"{client.user} is connected to the following guild: {guild.name}(id: {guild.id})")
+            print(
+                f"{client.user} is connected to the following guild: {guild.name}(id: {guild.id})"
+            )
 
         # Create the embed
         embed = Embed(
@@ -122,10 +130,15 @@ def send_special(code, desc, image, dev):
         message_type = choice(["good" * 2, "bad"])
 
         # Set the content
-        content = f"<@&{role}> " + random_message(message_type) + " " + random_emoji(message_type)
+        content = (
+            f"<@&{role}> "
+            + random_message(message_type)
+            + " "
+            + random_emoji(message_type)
+        )
 
         # Send message to channel
-        await client.get_channel(channel).send(content=content, embed=embed) # type: ignore
+        await client.get_channel(channel).send(content=content, embed=embed)  # type: ignore
 
         await client.close()
 

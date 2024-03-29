@@ -2,10 +2,11 @@ from sys import argv
 from functions import get_special, get_code_desc, send_special
 from time import sleep
 
+
 def main(*args):
     dev = False
 
-    if (len(args[0]) > 1 and args[0][1] == "-d"):
+    if len(args[0]) > 1 and args[0][1] == "-d":
         dev = True
 
     n = 0
@@ -24,10 +25,9 @@ def main(*args):
         except Exception as e:
             print(str(e))
             n += 1
-        
+
         sleep(3)
 
 
 if __name__ == "__main__":
-   main(argv)
-
+    main(argv)
