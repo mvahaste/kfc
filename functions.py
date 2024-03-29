@@ -1,4 +1,4 @@
-from facebook_scraper import get_posts, _scraper
+from facebook_scraper import get_posts, _scraper # type: ignore
 from re import search
 from discord import Client, Intents, Embed
 from random import choice
@@ -27,18 +27,18 @@ def get_code_desc(text):
 
     for line in lines:
         # Get code
-        if (search("(sooduskood) \d{5}", line.lower())):
+        if (search("(sooduskood) \\d{5}", line.lower())):
             code = line.strip()
 
         # Get description
-        if (search("€|%|(\d=\d)", line)):
+        if (search("€|%|(\\d=\\d)", line)):
             desc = line.strip()
 
     return (code, desc)
 
 def random_message(message_type):
     """Return a random message for the discord embed"""
-    good_messages: list[str] = [
+    good_messages = [
         "süüa saab",
         "paul on juba kohal",
         "kfc > mc",
@@ -48,7 +48,7 @@ def random_message(message_type):
         "nämm",
     ]
 
-    bad_messages: list[str] = [
+    bad_messages = [
         "tra kui siin ketšup on",
         "hakkan juba lootust kaotama",
         "mida vittu",
@@ -64,7 +64,7 @@ def random_message(message_type):
 
 def random_emoji(message_type):
     """Return a random emoji"""
-    good_emojis: list[str] = [
+    good_emojis = [
         ":poultry_leg:",
         ":chicken:",
         ":exclamation:",
@@ -73,7 +73,7 @@ def random_emoji(message_type):
         ":goat:",
     ]
 
-    bad_emojis: list[str] = [
+    bad_emojis = [
         ":bone:",
         ":skull:",
         ":pensive:",
@@ -125,7 +125,7 @@ def send_special(code, desc, image, dev):
         content = f"<@&{role}> " + random_message(message_type) + " " + random_emoji(message_type)
 
         # Send message to channel
-        await client.get_channel(channel).send(content=content, embed=embed)
+        await client.get_channel(channel).send(content=content, embed=embed) # type: ignore
 
         await client.close()
 
